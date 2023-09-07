@@ -38,7 +38,7 @@ The keys will be created in this same folder labeled `encryption-keys/your-file-
 
 ### 2. Encrypt or Decrypt a File
 
-To encrypt a file, run the following command, replacing `input_file.txt` with the path to the file you want to encrypt:
+To encrypt a file, run the following command, and simply follow the prompt as directed.
 
 ```bash
 python RSA.py
