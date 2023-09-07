@@ -106,7 +106,7 @@ class RSA:
         f = open(textFile).read()
 
         # Creates the document to create the encrypted version.
-        encrypted_f = open(f"{file_name}-encr.{ext}", "w+")
+        encrypted_f = open(f"{file_name}.enc", "w+")
 
         # Creates the document path folder in the local directory.
         if not os.path.exists(f"/encryption-keys/{file_name}/"):
@@ -116,11 +116,11 @@ class RSA:
 
         # Creates the sub directories for the keys to local directory in 'encryption-keys/filename' directory.
         encrypted_pub_k = open(
-            f"{self.currentDir}/encryption-keys/{file_name}/{file_name}-pub.key", "w+"
+            f"{self.currentDir}/encryption-keys/{file_name}/{file_name}-pub.pem", "w+"
         )
 
         encrypted_priv_k = open(
-            f"{self.currentDir}/encryption-keys/{file_name}/.{file_name}-priv.key", "w+"
+            f"{self.currentDir}/encryption-keys/{file_name}/.{file_name}-priv.pem", "w+"
         )
 
         # Lists each characters encryption number in hex format.
@@ -161,10 +161,10 @@ class RSA:
 
         # Opens the keys from the .ssh directory.
         pub_key = open(
-            f"{self.currentDir}/encryption-keys/{file_name}/{file_name}-pub.key", "r+"
+            f"{self.currentDir}/encryption-keys/{file_name}/{file_name}-pub.pem", "r+"
         ).readlines()[1]
         priv_key = open(
-            f"{self.currentDir}/encryption-keys/{file_name}/.{file_name}-priv.key", "r+"
+            f"{self.currentDir}/encryption-keys/{file_name}/.{file_name}-priv.pem", "r+"
         ).readlines()[1]
 
         # Reads the encrypted file and runs the power modular function against the public and private keys.
@@ -185,8 +185,7 @@ class RSA:
 if __name__ in ["__main__", "__live_coding__"]:
     currentDir = re.sub(r"/[^/]*\.py$", "", __file__)
 
-    # 80-bits is the highest my computer is able to run with a reasonable time.
-    rsa = RSA(64)
+    rsa = RSA(80)
 
     # Variable created to encrypt this file before.
     res = input("[1] Encrypt\n[2] Decrypt: ")
